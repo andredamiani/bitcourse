@@ -182,7 +182,7 @@ _s2 = (H(m2) + d ⋅ r)k~E~^-1^_ mod _q_
 
 Sottraendo _s~1~_ e _s~2~_ si può ricavare _k~E~_:
 
-_s1 - s2 = (H(m1) + d ⋅ r)k~E~^-1^ - (H(m2) + d ⋅ r)k~E~^-1^_ mod _q = (H(m1) - H(m2))kE-1_ mod _q_ +
+_s1 - s2 = (H(m1) + d ⋅ r)k~E~^-1^ - (H(m2) + d ⋅ r)k~E~^-1^_ mod _q = (H(m1) - H(m2))k~E~^-1^_ mod _q_ +
 ⇒ _k~E~ = (H(m1) - H(m2)) / (s~1~ - s~2~)_ mod _q_.
 
 Una volta trovato _k~E~_, si può calcolare _d_:
