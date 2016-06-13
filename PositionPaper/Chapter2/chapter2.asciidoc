@@ -107,46 +107,47 @@ Anche con le classi di resto si possono fare le operazioni abituali dei numeri i
 
 Una *curva ellittica* viene definita come l’insieme dei punti _P = (x, y)_ che rendono vera un’equazione della forma _y^2^ = x^3^ + ax + b_ (equazione di Weierstrass). Di seguito, a titolo di esempio, viene raffigurata la curva _y^2^ = x^3^ + 2x + 3_:
 
-[[curva-ellittica]]
-.Curva Ellittica
-image: :Immagini\Curva ellittica primo esempio.png["Curva Ellittica"]
+// [[curva-ellittica]]
+// .Curva Ellittica
+// image: :Immagini\Curva ellittica primo esempio.png["Curva Ellittica"]
 
-In crittografia non interessano i numeri reali, ma gli interi modulo un numero primo p, quindi l’equazione di Weierstrass viene considerata su un diverso insieme, quello appunto degli interi modulo questo numero p:
+In crittografia non interessano i numeri reali, ma gli interi modulo un numero primo _p_, quindi l’equazione di Weierstrass viene considerata su un diverso insieme, quello appunto degli interi modulo questo numero _p_:
 
-y2 = x3 + a ⋅ x + b mod p.
+_y^2^ = x^3^ + a ⋅ x + b_ mod _p_.
 
-Un’operazione è definita sull’insieme di punti che appartengono alla curva così definita e viene chiamata Point Addition:
+Un’operazione è definita sull’insieme di punti che appartengono alla curva così definita e viene chiamata _Point Addition_:
 
-P3 = P1 + P2.
+_P3 = P1 + P2_.
 
 Questa addizione gode delle seguenti proprietà geometriche:
 
-Se i due punti sono differenti tra loro, l’operazione disegna una retta passante per essi che interseca la curva in un terzo punto. Il risultato finale è la riflessione di questo punto rispetto all’asse x.
+Se i due punti sono differenti tra loro, l’operazione disegna una retta passante per essi che interseca la curva in un terzo punto. Il risultato finale è la riflessione di questo punto rispetto all’asse _x_.
 
 
 
-Se i due punti coincidono, la retta del punto precedente è tangente alla curva e il risultato dell’operazione è la riflessione dell’intersezione della retta con la curva. Questa operazione viene chiamata Point Dubling.
+Se i due punti coincidono, la retta del punto precedente è tangente alla curva e il risultato dell’operazione è la riflessione dell’intersezione della retta con la curva. Questa operazione viene chiamata _Point Doubling_.
 
 
 
-Un interessante risultato riguardante le curve ellittiche è che i punti appartenenti la curva sopra definita formano un gruppo abeliano (esiste l’elemento neutro e l’inverso rispetto alla somma per ciascun elemento, inoltre invertendo l’ordine degli addendi il risultato non varia). Il gruppo è composto inoltre da un numero finito di elementi ed è ciclico: partendo da un punto iniziale sulla curva, chiamato generatore, e sommandolo successivamente, tutti i punti del gruppo vengono raggiunti. L’elemento neutro del gruppo viene chiamato punto all’infinito, nomenclatura che deriva dalla sua costruzione geometrica illustrata nell’immagine sottostante:
+Un interessante risultato riguardante le curve ellittiche è che i punti appartenenti la curva sopra definita formano un *gruppo abeliano* (esiste l’elemento neutro e l’inverso rispetto alla somma per ciascun elemento, inoltre invertendo l’ordine degli addendi il risultato non varia). Il gruppo è composto inoltre da un numero finito di elementi ed è *ciclico*: partendo da un punto iniziale sulla curva, chiamato *generatore*, e sommandolo successivamente, tutti i punti del gruppo vengono raggiunti. L’elemento neutro del gruppo viene chiamato _punto all’infinito_, nomenclatura che deriva dalla sua costruzione geometrica illustrata nell’immagine sottostante:
 
-P + ∞ = P
-P + (- P) = ∞
+_P + ∞ = P_ +
+_P + (- P) = ∞_
 
 
 
-Dato un punto P sulla curva ellittica e un intero d, la point multiplication è definita come il punto T sulla curva ellittica ottenuto come risultato dell’addizione di P a se stesso d volte:
+Dato un punto _P_ sulla curva ellittica e un intero _d_, la p*oint multiplication* è definita come il punto _T_ sulla curva ellittica ottenuto come risultato dell’addizione di _P_ a se stesso _d_ volte:
 
-T = d ⋅ P = P + P + … + P.
+_T = d ⋅ P = P + P + … + P_.
 
-L’operazione del logaritmo discreto è l’inverso della point multiplication, ovvero il logaritmo discreto di T rispetto a P è quell’intero d tale che T = d ⋅ P. La point multiplication è un’operazione veloce utilizzando l’algoritmo double-and-add. Si tratta di un procedimento ricorsivo, che riduce il calcolo di d⋅ P a pochi point addition e point dubling, risultando essere polinomiale nel numero di bit di d, mentre quello del logaritmo discreto è irrealizzabile richiedendo un tempo esponenziale nei bit di d. Di seguito viene riportato un esempio, insieme con il codice Python dell’algoritmo:
+L’operazione del *logaritmo discreto* è l’inverso della point multiplication, ovvero il logaritmo discreto di _T_ rispetto a _P_ è quell’intero _d_ tale che _T = d ⋅ P_. La point multiplication è un’operazione veloce utilizzando l’algoritmo *double-and-add*. Si tratta di un procedimento ricorsivo, che riduce il calcolo di _d ⋅ P_ a pochi point addition e point dubling, risultando essere polinomiale nel numero di bit di _d_, mentre quello del logaritmo discreto è irrealizzabile richiedendo un tempo esponenziale nei bit di _d_. Di seguito viene riportato un esempio, insieme con il codice Python dell’algoritmo:
 
-d = 947 = 20 + 21 + 24 + 25 + 27 + 28 + 29
-947P = P + 2P + 16P + 32P + 128P + 256P + 512P
+_d = 947 = 2^0^ pass:[<u>+</u>] 2^1^ pass:[<u>+</u>] 2^4^ pass:[<u>+</u>] 2^5^ pass:[<u>+</u>] 2^7^ pass:[<u>+</u>] 2^8^ pass:[<u>+</u>] 2^*9*^_ +
+_947P = P + 2P + 16P + 32P + 128P + 256P + 512P_
 
-9 doubling e 6 addition: polinomiale nel numero di bit di d e decisamente migliore di 946 addizioni
+*9* doubling e pass:[<u>6</u>] addition: polinomiale nel numero di bit di _d_ e decisamente migliore di 946 addizioni
 
+....
 def pointMultiply(n, P):
    if n==1:
       return P
@@ -154,37 +155,38 @@ def pointMultiply(n, P):
       return pointAdd(P, pointMultiply(n-1, P))
    else: # doubling when n is even
       return pointMultiply(n/2, pointDouble(P))
+....
 
-Nella prossima figura viene rappresentato un esempio del gruppo generato dalla curva ellittica y2 = x3 + 2x + 3 mod 263, prendendo come punto generatore A = (200, 39). Il secondo punto della curva è dunque dato da A + A = 2A, il terzo punto da A + A + A = 3A e così via. Vi sono 270 punti nel gruppo, il primo grafico li mostra tutti, il secondo solamente i primi 14, ciascuno legato al precedente e al successivo. Geometricamente, formano un pattern difficile da prevedere sul quadrato (263, 263).
-
-
-
+Nella prossima figura viene rappresentato un esempio del gruppo generato dalla curva ellittica _y^2^ = x^3^ + 2x + 3_ mod _263_, prendendo come punto generatore _A = (200, 39)_. Il secondo punto della curva è dunque dato da _A + A = 2A_, il terzo punto da _A + A + A = 3A_ e così via. Vi sono 270 punti nel gruppo, il primo grafico li mostra tutti, il secondo solamente i primi 14, ciascuno legato al precedente e al successivo. Geometricamente, formano un _pattern_ difficile da prevedere sul quadrato _(263, 263)_.
 
 
-Scegliere i parametri di una curva ellittica da utilizzare (i coefficienti della curva, a e b, l’ordine primo del campo, p, e il generatore, A) è un compito non banale. Vi sono diversi standard che determinano tali parametri, aventi lo scopo della sicurezza; Satoshi Nakamoto ha scelto lo standard secp256k1 per Bitcoin.
-Il miglior algoritmo che si conosca per risolvere il problema del logaritmo discreto sulle curve ellittiche necessita di un numero di passi proporzionali a 2n/2, dove n è il numero di bit della chiave; secp256k1 utilizza chiavi a 256 bit, quindi il numero di passi necessari è nell’intorno dei 2128, un numero decisamente più che astronomico.
 
-L’Elliptic Curve Digital Signature Algorithm (ECDSA) è la combinazione delle curve ellittiche con DSA (digital signature scheme), lo schema di firma utilizzato in Bitcoin. I paramteri della curva, a e b, l’ordine primo del campo, p, e il generatore, A, sono scelti secondo lo standard secp256k1. Dati questi parametri, l’ordine del gruppo ciclico composto dai punti della curva, q, è dato dal Teorema di Hasse. Per prima cosa si genera la chiave privata scegliendo un numero intero casuale d minore di q. Va sottolineata l’importanza che d sia scelto da un buon generatore di numeri casuali.
-La parte dell’algoritmo che genera le chiavi calcola la chiave pubblica B a partire da quella privata d utilizzando B = d ⋅ A mod p, dove A è il generatore del gruppo. Questo passo è veloce utilizzando l’algoritmo double-and-add.
 
-Per firmare un messaggio, innanzitutto viene generato un ephemeral random number kE. Sarà fra breve evidente l’importanza che sia casuale e utilizzato una sola volta, ovvero kE è un nonce. La firma consiste in una coppia formata da due interi (r, s), dove r è la prima coordinata del punto R = kE ⋅  A appartenente alla curva ellittica, mentre s viene calcolato nel modo seguente:
 
-s = (H(m) + d ⋅ r)kE-1 mod q
+Scegliere i parametri di una curva ellittica da utilizzare (i coefficienti della curva, _a_ e _b_, l’ordine primo del campo, _p_, e il generatore, _A_) è un compito non banale. Vi sono diversi standard che determinano tali parametri, aventi lo scopo della sicurezza; Satoshi Nakamoto ha scelto lo standard *secp256k1* per Bitcoin.
+Il miglior algoritmo che si conosca per risolvere il problema del logaritmo discreto sulle curve ellittiche necessita di un numero di passi proporzionali a _2^n/2^_, dove _n_ è il numero di bit della chiave; secp256k1 utilizza chiavi a 256 bit, quindi il numero di passi necessari è nell’intorno dei 2^128^, un numero decisamente più che astronomico.
 
-dove m è il messaggio, H(m) l’hash value del messaggio e kE-1 l’inverso moltiplicativo di kE. L’hashing è importante per ottenere un valore minore di q. La coppia (r, s) viene pubblicata come la firma.
+L’*Elliptic Curve Digital Signature Algorithm (ECDSA)* è la combinazione delle curve ellittiche con DSA (digital signature scheme), lo schema di firma utilizzato in Bitcoin. I paramteri della curva, _a_ e _b_, l’ordine primo del campo, _p_, e il generatore, _A_, sono scelti secondo lo standard secp256k1. Dati questi parametri, l’ordine del gruppo ciclico composto dai punti della curva, _q_, è dato dal Teorema di Hasse. Per prima cosa si genera la chiave privata scegliendo un numero intero casuale _d_ minore di _q_. Va sottolineata l’importanza che _d_ sia scelto da un buon generatore di numeri casuali.
+La parte dell’algoritmo che genera le chiavi calcola la chiave pubblica _B_ a partire da quella privata _d_ utilizzando _B = d ⋅ A_ mod _p_, dove _A_ è il generatore del gruppo. Questo passo è veloce utilizzando l’algoritmo _double-and-add_.
 
-Si consideri ora il caso in cui kE venga utilizzato due volte per firmare un messaggio, si ottiene:
+Per firmare un messaggio, innanzitutto viene generato un *ephemeral random number* _k~E~_. Sarà fra breve evidente l’importanza che sia casuale e utilizzato una sola volta, ovvero _k~E~_ è un *nonce*. La firma consiste in una coppia formata da due interi _(r, s)_, dove _r_ è la prima coordinata del punto _R = k~E~ ⋅  A_ appartenente alla curva ellittica, mentre s viene calcolato nel modo seguente:
 
-s1 = (H(m1) + d ⋅ r)kE-1	mod q
-s2 = (H(m2) + d ⋅ r)kE-1 mod q
+_s = (H(m) + d ⋅ r)k~E~^-1^_ mod _q_
 
-Sottraendo s1 e s2 si può ricavare kE:
+dove _m_ è il messaggio, _H(m)_ l’hash value del messaggio e _k~E~^-1^_ l’inverso moltiplicativo di _k~E~_. L’hashing è importante per ottenere un valore minore di _q_. La coppia _(r, s)_ viene pubblicata come la firma.
 
-s1 - s2 = (H(m1) + d ⋅ r)kE-1 - (H(m2) + d ⋅ r)kE-1 mod q = (H(m1) - H(m2))kE-1 mod q
-⇒ kE = (H(m1) - H(m2)) / (s1 - s2) mod q.
+Si consideri ora il caso in cui _k~E~_ venga utilizzato due volte per firmare un messaggio, si ottiene:
 
-Una volta trovato kE, si può calcolare d:
+_s1 = (H(m1) + d ⋅ r)k~E~^-1^_	mod _q_ +
+_s2 = (H(m2) + d ⋅ r)k~E~^-1^_ mod _q_
 
-d = (s1 ⋅ kE - H(m1)) / r mod q.
+Sottraendo _s~1~_ e _s~2~_ si può ricavare _k~E~_:
 
-Di conseguenza riutilizzare l’ephemeral random number kE anche solo una volta equivale a dare via la propria chiave privata. Questo può essere problematico per un indirizzo Bitcoin, perché perdere la chiave privata  vuol dire perdere il controllo dei fondi contenuti in quell’indirizzo.
+_s1 - s2 = (H(m1) + d ⋅ r)k~E~^-1^ - (H(m2) + d ⋅ r)k~E~^-1^_ mod _q = (H(m1) - H(m2))kE-1_ mod _q_ +
+⇒ _k~E~ = (H(m1) - H(m2)) / (s~1~ - s~2~)_ mod _q_.
+
+Una volta trovato _k~E~_, si può calcolare _d_:
+
+_d = (s1 ⋅ k~E~ - H(m1)) / r_ mod _q_.
+
+Di conseguenza riutilizzare l’ephemeral random number _k~E~_ anche solo una volta equivale a dare via la propria chiave privata. Questo può essere problematico per un indirizzo Bitcoin, perché perdere la chiave privata  vuol dire perdere il controllo dei fondi contenuti in quell’indirizzo.
