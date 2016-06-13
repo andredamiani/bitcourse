@@ -74,9 +74,9 @@ Una *funzione di hash* è un algoritmo che riceve in ingresso dati di lunghezza 
 
 Bitcoin utilizza le *funzioni di hash crittografiche* che richiedono dei requisiti aggiuntivi rispetto alle normali funzioni di hash:
 
-* pass:[<u>Collision resistance</u>]: è computazionalmente irrealizzabile trovare due input che risultino avere lo stesso hash value.
-* pass:[<u>Hiding</u>]: dato un hash value, deve essere computazionalmente irrealizzabile il relativo dato di input.
-* pass:[<u>Puzzle friendliness</u>]: se parte dell’input è scelto in un’opportuna maniera casuale è computazionalmente irrealizzabile trovare la restante parte in modo che l’output sia un determinato hash value.
+* +++<u>Collision resistance</u>+++: è computazionalmente irrealizzabile trovare due input che risultino avere lo stesso hash value.
+* +++<u>Hiding</u>+++: dato un hash value, deve essere computazionalmente irrealizzabile il relativo dato di input.
+* +++<u>Puzzle friendliness</u>+++: se parte dell’input è scelto in un’opportuna maniera casuale è computazionalmente irrealizzabile trovare la restante parte in modo che l’output sia un determinato hash value.
 
 Bitcoin usa in particolare la funzione _SHA256_, i cui output sono lunghi 256 bit.
 Computazionalmente irrealizzabile significa che non vi è algoritmo conosciuto che possa recuperare l’input a partire dall’output in un tempo polinomiale rispetto alla dimensione dell’input. Ad oggi i migliori algoritmi usano la forza bruta e richiedono un tempo esponenziale.
@@ -142,10 +142,10 @@ _T = d ⋅ P = P + P + … + P_.
 
 L’operazione del *logaritmo discreto* è l’inverso della point multiplication, ovvero il logaritmo discreto di _T_ rispetto a _P_ è quell’intero _d_ tale che _T = d ⋅ P_. La point multiplication è un’operazione veloce utilizzando l’algoritmo *double-and-add*. Si tratta di un procedimento ricorsivo, che riduce il calcolo di _d ⋅ P_ a pochi point addition e point dubling, risultando essere polinomiale nel numero di bit di _d_, mentre quello del logaritmo discreto è irrealizzabile richiedendo un tempo esponenziale nei bit di _d_. Di seguito viene riportato un esempio, insieme con il codice Python dell’algoritmo:
 
-_d = 947 = 2^0^ pass:[<u>+</u>] 2^1^ pass:[<u>+</u>] 2^4^ pass:[<u>+</u>] 2^5^ pass:[<u>+</u>] 2^7^ pass:[<u>+</u>] 2^8^ pass:[<u>+</u>] 2^*9*^_ +
+_d = 947 = 2^0^ +++<u>+</u>+++ 2^1^ +++<u>+</u>+++ 2^4^ +++<u>+</u>+++ 2^5^ +++<u>+</u>+++ 2^7^ +++<u>+</u>+++ 2^8^ +++<u>+</u>+++ 2^*9*^_ +
 _947P = P + 2P + 16P + 32P + 128P + 256P + 512P_
 
-*9* doubling e pass:[<u>6</u>] addition: polinomiale nel numero di bit di _d_ e decisamente migliore di 946 addizioni
+*9* doubling e +++<u>6</u>+++ addition: polinomiale nel numero di bit di _d_ e decisamente migliore di 946 addizioni
 
 ....
 def pointMultiply(n, P):
