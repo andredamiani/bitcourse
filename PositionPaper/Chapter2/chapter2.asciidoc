@@ -74,9 +74,9 @@ Una *funzione di hash* è un algoritmo che riceve in ingresso dati di lunghezza 
 
 Bitcoin utilizza le *funzioni di hash crittografiche* che richiedono dei requisiti aggiuntivi rispetto alle normali funzioni di hash:
 
-* +++<u>Collision resistance</u>+++: è computazionalmente irrealizzabile trovare due input che risultino avere lo stesso hash value.
-* +++<u>Hiding</u>+++: dato un hash value, deve essere computazionalmente irrealizzabile il relativo dato di input.
-* +++<u>Puzzle friendliness</u>+++: se parte dell’input è scelto in un’opportuna maniera casuale è computazionalmente irrealizzabile trovare la restante parte in modo che l’output sia un determinato hash value.
+* *Collision resistance*: è computazionalmente irrealizzabile trovare due input che risultino avere lo stesso hash value.
+* *Hiding*: dato un hash value, deve essere computazionalmente irrealizzabile il relativo dato di input.
+* *Puzzle friendliness*: se parte dell’input è scelto in un’opportuna maniera casuale è computazionalmente irrealizzabile trovare la restante parte in modo che l’output sia un determinato hash value.
 
 Bitcoin usa in particolare la funzione _SHA256_, i cui output sono lunghi 256 bit.
 Computazionalmente irrealizzabile significa che non vi è algoritmo conosciuto che possa recuperare l’input a partire dall’output in un tempo polinomiale rispetto alla dimensione dell’input. Ad oggi i migliori algoritmi usano la forza bruta e richiedono un tempo esponenziale.
