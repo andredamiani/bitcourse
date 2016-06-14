@@ -107,8 +107,6 @@ Anche con le classi di resto si possono fare le operazioni abituali dei numeri i
 
 Una *curva ellittica* viene definita come l’insieme dei punti _P = (x, y)_ che rendono vera un’equazione della forma _y^2^ = x^3^ + ax + b_ (equazione di Weierstrass). Di seguito, a titolo di esempio, viene raffigurata la curva _y^2^ = x^3^ + 2x + 3_:
 
-[[Curva-Ellittica]]
-.Esempio di curva ellittica
 image::images\1.png["Curva Ellittica"]
 
 In crittografia non interessano i numeri reali, ma gli interi modulo un numero primo _p_, quindi l’equazione di Weierstrass viene considerata su un diverso insieme, quello appunto degli interi modulo questo numero _p_:
