@@ -119,20 +119,20 @@ _P3 = P1 + P2_.
 
 Questa addizione gode delle seguenti proprietà geometriche:
 
-Se i due punti sono differenti tra loro, l’operazione disegna una retta passante per essi che interseca la curva in un terzo punto. Il risultato finale è la riflessione di questo punto rispetto all’asse _x_.
+* Se i due punti sono differenti tra loro, l’operazione disegna una retta passante per essi che interseca la curva in un terzo punto. Il risultato finale è la riflessione di questo punto rispetto all’asse _x_.
 
+image::images\2.png[]
 
+* Se i due punti coincidono, la retta del punto precedente è tangente alla curva e il risultato dell’operazione è la riflessione dell’intersezione della retta con la curva. Questa operazione viene chiamata _Point Doubling_.
 
-Se i due punti coincidono, la retta del punto precedente è tangente alla curva e il risultato dell’operazione è la riflessione dell’intersezione della retta con la curva. Questa operazione viene chiamata _Point Doubling_.
-
-
+image::images\3.png[]
 
 Un interessante risultato riguardante le curve ellittiche è che i punti appartenenti la curva sopra definita formano un *gruppo abeliano* (esiste l’elemento neutro e l’inverso rispetto alla somma per ciascun elemento, inoltre invertendo l’ordine degli addendi il risultato non varia). Il gruppo è composto inoltre da un numero finito di elementi ed è *ciclico*: partendo da un punto iniziale sulla curva, chiamato *generatore*, e sommandolo successivamente, tutti i punti del gruppo vengono raggiunti. L’elemento neutro del gruppo viene chiamato _punto all’infinito_, nomenclatura che deriva dalla sua costruzione geometrica illustrata nell’immagine sottostante:
 
 _P + ∞ = P_ +
 _P + (- P) = ∞_
 
-
+image::images\4.png[]
 
 Dato un punto _P_ sulla curva ellittica e un intero _d_, la *point multiplication* è definita come il punto _T_ sulla curva ellittica ottenuto come risultato dell’addizione di _P_ a se stesso _d_ volte:
 
@@ -157,9 +157,9 @@ def pointMultiply(n, P):
 
 Nella prossima figura viene rappresentato un esempio del gruppo generato dalla curva ellittica _y^2^ = x^3^ + 2x + 3_ mod _263_, prendendo come punto generatore _A = (200, 39)_. Il secondo punto della curva è dunque dato da _A + A = 2A_, il terzo punto da _A + A + A = 3A_ e così via. Vi sono 270 punti nel gruppo, il primo grafico li mostra tutti, il secondo solamente i primi 14, ciascuno legato al precedente e al successivo. Geometricamente, formano un _pattern_ difficile da prevedere sul quadrato _(263, 263)_.
 
+image::images\5.png[]
 
-
-
+image::images\6.png[]
 
 Scegliere i parametri di una curva ellittica da utilizzare (i coefficienti della curva, _a_ e _b_, l’ordine primo del campo, _p_, e il generatore, _A_) è un compito non banale. Vi sono diversi standard che determinano tali parametri, aventi lo scopo della sicurezza; Satoshi Nakamoto ha scelto lo standard *secp256k1* per Bitcoin.
 Il miglior algoritmo che si conosca per risolvere il problema del logaritmo discreto sulle curve ellittiche necessita di un numero di passi proporzionali a _2^n/2^_, dove _n_ è il numero di bit della chiave; secp256k1 utilizza chiavi a 256 bit, quindi il numero di passi necessari è nell’intorno dei 2^128^, un numero decisamente più che astronomico.
